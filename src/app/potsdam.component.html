@@ -1,8 +1,17 @@
 <h1>
   {{title}} template <md-checkbox>in</md-checkbox></h1>
-  <div class="search-results"
-                    infinite-scroll
-                    [infiniteScrollDistance]="2"
-                    [infiniteScrollThrottle]="500"
-                    (scrolled)="onScroll()">
-                </div>
+
+<div *ngFor="let ele of potses">
+  {{ele.subject}}<br/>
+  {{ele.created_at}}<br/>
+  {{ele.content}}<br/>
+</div>
+
+<div class="search-results"
+     infinite-scroll
+     [infiniteScrollDistance]="400"
+     [infiniteScrollUpDistance]="1.5"
+     [infiniteScrollThrottle]="500"
+     (scrolled)="onScrollDown()"
+     (scrolledUp)="onScrollUp()">
+</div>
