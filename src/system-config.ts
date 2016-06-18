@@ -4,6 +4,7 @@
 /** Map relative paths to URLs. */
 const map: any = {
     '@angular2-material': 'vendor/@angular2-material',
+    'angular2-infinite-scroll': 'vendor/angular2-infinite-scroll',
 };
 
 
@@ -23,6 +24,12 @@ materialPkgs.forEach((pkg) => {
         main: `${pkg}.js`
     };
 });
+
+packages['angular2-infinite-scroll'] = {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: `angular2-infinite-scroll.js`
+};
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

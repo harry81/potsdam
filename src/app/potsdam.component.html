@@ -1,3 +1,8 @@
 <h1>
-  {{title}} template <md-checkbox>in</md-checkbox>
-</h1>
+  {{title}} template <md-checkbox>in</md-checkbox></h1>
+  <div class="search-results"
+                    infinite-scroll
+                    [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="500"
+                    (scrolled)="onScroll()">
+                </div>
