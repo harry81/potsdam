@@ -9,7 +9,9 @@
   <md-card *ngFor="let post of postes">
     <md-card-title><a href="{{post.url}}" target="_new">{{post.subject}}</a></md-card-title>
     <md-card-content>
-      <pre>{{post.content}}</pre>
+      <p *ngFor="let ln of post.content_html">
+        {{ln}}
+
     </md-card-content>
     <md-card-subtitle>{{post.member}} {{post.created_at}} </md-card-subtitle>
     <md-card-actions>
@@ -17,5 +19,4 @@
       <button md-button>SHARE</button>
     </md-card-actions>
   </md-card>
-
 </div>

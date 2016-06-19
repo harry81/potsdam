@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PotsdamService {
     constructor (private http: Http) {}
+
+    //private postUrl = 'http://localhost:8001/api-post/';
     private postUrl = 'http://news.hoodpub.com/api-post/';
 
     getNext(next: string) {

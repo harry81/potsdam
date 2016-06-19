@@ -47,6 +47,9 @@ export class PotsdamAppComponent {
     }
 
     getNext() {
+        if (this.next == null)
+            return
+
         this.PotsdamService.getNext(this.next)
             .subscribe(
                 postes => {
@@ -56,9 +59,6 @@ export class PotsdamAppComponent {
                     this.next = postes.next
                 },
                 error =>  this.errorMessage = <any>error);
-
-
-
     }
 
 }
