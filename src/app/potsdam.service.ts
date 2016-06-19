@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PotsdamService {
     constructor (private http: Http) {}
-    private potsUrl = 'http://news.hoodpub.com/api-post/';
+    private postUrl = 'http://news.hoodpub.com/api-post/';
 
     getNext(next: string) {
         console.log('getNext() ', next);
@@ -14,8 +14,8 @@ export class PotsdamService {
             .map(this.extractData);
     }
 
-    getPotss () {
-        return this.http.get(this.potsUrl)
+    getPosts () {
+        return this.http.get(this.postUrl)
             .map(this.extractData);
     }
 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { MdCheckbox } from '@angular2-material/checkbox';
 import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { PotsdamService } from './potsdam.service';
+import { MdCheckbox } from '@angular2-material/checkbox';
+import { MdCard } from '@angular2-material/card';
 
 import { Post } from './Post';
 @Component({
@@ -9,14 +10,16 @@ import { Post } from './Post';
     selector: 'potsdam-app',
     templateUrl: 'potsdam.component.html',
     styleUrls: ['potsdam.component.css'],
-    directives: [MdCheckbox, InfiniteScroll],
+    directives: [MdCheckbox,
+                 MdCard,
+                 InfiniteScroll],
     providers: [PotsdamService],
 })
 export class PotsdamAppComponent {
     constructor (private PotsdamService: PotsdamService) {}
     errorMessage: string;
     next: string;
-    potses: Post[];
+    postes: Post[];
     title = 'potsdam works!';
 
     onScroll() {
@@ -32,13 +35,13 @@ export class PotsdamAppComponent {
         console.log('scrolled up!!')
     }
 
-    ngOnInit() { this.getPotss(); }
+    ngOnInit() { this.getPosts(); }
 
-    getPotss() {
-        this.PotsdamService.getPotss()
+    getPosts() {
+        this.PotsdamService.getPosts()
             .subscribe(
-                potses => {this.potses = potses.results;
-                           this.next = potses.next
+                postes => {this.postes = postes.results;
+                           this.next = postes.next
                           },
                 error =>  this.errorMessage = <any>error);
     }
@@ -46,16 +49,16 @@ export class PotsdamAppComponent {
     getNext() {
         this.PotsdamService.getNext(this.next)
             .subscribe(
-                potses => {
-                    this.potses = potses.results;
-                    // for (var ele in potses.results) {
-                    //     console.log(ele);
-                        // this.potses.push(ele);
-                    // };
-
-                    this.next = potses.next
+                postes => {
+                    for (var ele in postes.results) {
+                        this.postes.push(postes.results[ele]);
+                    };
+                    this.next = postes.next
                 },
                 error =>  this.errorMessage = <any>error);
+
+
+
     }
 
 }
