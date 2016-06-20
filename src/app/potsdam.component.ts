@@ -3,6 +3,7 @@ import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { PotsdamService } from './potsdam.service';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdCard } from '@angular2-material/card';
+import { MdButton } from '@angular2-material/button';
 
 import { Post } from './Post';
 @Component({
@@ -12,6 +13,7 @@ import { Post } from './Post';
     styleUrls: ['potsdam.component.css'],
     directives: [MdCheckbox,
                  MdCard,
+                 MdButton,
                  InfiniteScroll],
     providers: [PotsdamService],
 })
