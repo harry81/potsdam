@@ -4,6 +4,7 @@ import { PotsdamService } from './potsdam.service';
 import { MdCheckbox } from '@angular2-material/checkbox';
 import { MdCard } from '@angular2-material/card';
 import { MdButton } from '@angular2-material/button';
+import { MdIcon } from '@angular2-material/icon';
 
 import { Post } from './Post';
 @Component({
@@ -14,6 +15,7 @@ import { Post } from './Post';
     directives: [MdCheckbox,
                  MdCard,
                  MdButton,
+                 MdIcon,
                  InfiniteScroll],
     providers: [PotsdamService],
 })

@@ -12,9 +12,20 @@ const packages:any = {};
 
 const materialPkgs:string[] = [
     'core',
-    'button',
     'card',
+    'button',
     'checkbox',
+    'grid-list',
+    'icon',
+    'input',
+    'list',
+    'progress-bar',
+    'progress-circle',
+    'radio',
+    'sidenav',
+    'slide-toggle',
+    'tabs',
+    'toolbar',
 ];
 
 materialPkgs.forEach((pkg) => {
