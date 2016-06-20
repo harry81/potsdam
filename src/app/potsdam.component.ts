@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { PotsdamService } from './potsdam.service';
 import { MdCheckbox } from '@angular2-material/checkbox';
-import { MdCard } from '@angular2-material/card';
-import { MdButton } from '@angular2-material/button';
-import { MdIcon } from '@angular2-material/icon';
+import { MD_LIST_DIRECTIVES} from '@angular2-material/list';
+import { MdCard, MD_CARD_DIRECTIVES } from '@angular2-material/card';
+import { MdButton, MD_BUTTON_DIRECTIVES  } from '@angular2-material/button';
+import { MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
+import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 
 import { Post } from './Post';
 @Component({
@@ -16,8 +18,14 @@ import { Post } from './Post';
                  MdCard,
                  MdButton,
                  MdIcon,
-                 InfiniteScroll],
-    providers: [PotsdamService],
+                 InfiniteScroll,
+                 MD_LIST_DIRECTIVES,
+                 MD_CARD_DIRECTIVES,
+                 MD_BUTTON_DIRECTIVES,
+                 MD_SIDENAV_DIRECTIVES,
+                ],
+    providers: [PotsdamService,
+                MdIconRegistry],
 })
 export class PotsdamAppComponent {
     constructor (private PotsdamService: PotsdamService) {}
@@ -25,6 +33,19 @@ export class PotsdamAppComponent {
     next: string;
     postes: Post[];
     title = 'potsdam works!';
+
+    views: Object[] = [
+        {
+            name: "My Account",
+            description: "Edit my account information",
+            icon: "assignment ind"
+        },
+        {
+            name: "Potential dates",
+            description: "Find your soulmate!",
+            icon: "pets"
+        }
+    ];
 
     onScroll() {
         console.log('onScroll');
@@ -65,4 +86,7 @@ export class PotsdamAppComponent {
                 error =>  this.errorMessage = <any>error);
     }
 
+    clicked(event) {
+        console.log("hi");
+    }
 }
