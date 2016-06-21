@@ -5,6 +5,8 @@
 const map: any = {
     '@angular2-material': 'vendor/@angular2-material',
     'angular2-infinite-scroll': 'vendor/angular2-infinite-scroll',
+    'angular2-moment': 'vendor/angular2-moment',
+    'moment': 'vendor/moment',
 };
 
 
@@ -40,6 +42,18 @@ packages['angular2-infinite-scroll'] = {
     format: 'cjs',
     defaultExtension: 'js',
     main: `angular2-infinite-scroll.js`
+};
+
+packages['angular2-moment'] = {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: `TimeAgoPipe.js`
+};
+
+packages['moment'] = {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: `moment`
 };
 
 

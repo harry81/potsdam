@@ -14,6 +14,8 @@ module.exports = function(defaults) {
       'systemjs/dist/system.src.js',
       'angular2-infinite-scroll/**/*.js',
       'systemjs/dist/system-polyfills.js',
+      'angular2-moment/*.js',
+      'moment/*.js',
     ]
   });
 };

@@ -7,6 +7,7 @@ import { MdCard, MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MdButton, MD_BUTTON_DIRECTIVES  } from '@angular2-material/button';
 import { MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
+import { TimeAgoPipe } from 'angular2-moment';
 
 import { Post } from './Post';
 @Component({
@@ -26,6 +27,7 @@ import { Post } from './Post';
                 ],
     providers: [PotsdamService,
                 MdIconRegistry],
+    pipes: [TimeAgoPipe],
 })
 export class PotsdamAppComponent {
     constructor (private PotsdamService: PotsdamService) {}
@@ -65,9 +67,10 @@ export class PotsdamAppComponent {
     getPosts() {
         this.PotsdamService.getPosts()
             .subscribe(
-                postes => {this.postes = postes.results;
-                           this.next = postes.next
-                          },
+                postes => {
+                    this.extractData(postes.results);
+                    this.next = postes.next
+                },
                 error =>  this.errorMessage = <any>error);
     }
 
@@ -78,15 +81,25 @@ export class PotsdamAppComponent {
         this.PotsdamService.getNext(this.next)
             .subscribe(
                 postes => {
-                    for (var ele in postes.results) {
-                        this.postes.push(postes.results[ele]);
-                    };
+                    this.extractData(postes.results);
                     this.next = postes.next
                 },
                 error =>  this.errorMessage = <any>error);
     }
 
-    clicked(event) {
-        console.log("hi");
+    clicked(url) {
+        window.open(url, '_blank').focus();
+    }
+
+    private extractData(results){
+        for (var ele in results) {
+            results[ele].created_at = new Date(results[ele].created_at);
+            if (this.postes == undefined) {
+                this.postes = results;
+            }
+            else {
+                this.postes.push(results[ele]);
+            }
+        };
     }
 }
