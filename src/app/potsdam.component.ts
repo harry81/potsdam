@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router , Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { PotsdamService } from './potsdam.service';
 import { MdCheckbox } from '@angular2-material/checkbox';
@@ -8,6 +9,7 @@ import { MdButton, MD_BUTTON_DIRECTIVES  } from '@angular2-material/button';
 import { MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { TimeAgoPipe } from 'angular2-moment';
+import { PostdamComponent } from './+postdam';
 
 import { Post } from './Post';
 @Component({
@@ -26,11 +28,20 @@ import { Post } from './Post';
                  MD_SIDENAV_DIRECTIVES,
                 ],
     providers: [PotsdamService,
-                MdIconRegistry],
+                MdIconRegistry,
+               ],
     pipes: [TimeAgoPipe],
 })
+
+@Routes([
+  {path: '/postdam', component: PostdamComponent}
+])
+
 export class PotsdamAppComponent {
-    constructor (private PotsdamService: PotsdamService) {}
+    constructor (
+        private router: Router,
+        private PotsdamService: PotsdamService
+                ) {}
     errorMessage: string;
     next: string;
     postes: Post[];
@@ -62,7 +73,9 @@ export class PotsdamAppComponent {
         console.log('scrolled up!!')
     }
 
-    ngOnInit() { this.getPosts(); }
+    ngOnInit() {
+        this.getPosts();
+    }
 
     getPosts() {
         this.PotsdamService.getPosts()

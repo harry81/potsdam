@@ -17,6 +17,7 @@ export class PotsdamService {
     }
 
     getPosts () {
+        this.postUrl = this.postUrl + '&search=홍콩'
         return this.http.get(this.postUrl)
             .map(this.extractData);
     }

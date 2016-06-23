@@ -16,6 +16,7 @@ module.exports = function(defaults) {
       'systemjs/dist/system-polyfills.js',
       'angular2-moment/*.js',
       'moment/*.js',
+      '@angular/router',
     ]
   });
 };

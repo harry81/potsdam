@@ -8,16 +8,17 @@
 
   <md-card *ngFor="let post of postes">
     <md-card-title>{{post.subject}}</md-card-title>
+    <md-card-subtitle>{{post.member}} / {{post.created_at | amTimeAgo}} </md-card-subtitle>
     <md-card-content>
       <p *ngFor="let ln of post.content_html">
         {{ln}}
       </p>
-
     </md-card-content>
-    <md-card-subtitle>{{post.member}} {{post.created_at | amTimeAgo}} </md-card-subtitle>
     <md-card-actions>
       <button md-button (click)="clicked(post.url)">DETAIL</button>
     </md-card-actions>
   </md-card>
 </div>
 
+
+<router-outlet></router-outlet>

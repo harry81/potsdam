@@ -7,6 +7,7 @@ const map: any = {
     'angular2-infinite-scroll': 'vendor/angular2-infinite-scroll',
     'angular2-moment': 'vendor/angular2-moment',
     'moment': 'vendor/moment',
+    '@angular/router': 'vendor/@angular/router',
 };
 
 
@@ -56,6 +57,12 @@ packages['moment'] = {
     main: `moment`
 };
 
+packages['@angular/router'] = {
+    format: 'cjs',
+    defaultExtension: 'js',
+    main: `index.js`
+};
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -77,6 +84,7 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/+postdam',
   /** @cli-barrel */
 ];
 
