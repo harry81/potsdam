@@ -39,7 +39,6 @@ import { Post } from './Post';
 
 export class PotsdamAppComponent {
     constructor (
-        private router: Router,
         private PotsdamService: PotsdamService
                 ) {}
     errorMessage: string;
