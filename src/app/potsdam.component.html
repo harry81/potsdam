@@ -6,6 +6,8 @@
      (scrolled)="onScrollDown()"
      (scrolledUp)="onScrollUp()">
 
+  <router-outlet></router-outlet>
+
   <md-card *ngFor="let post of postes">
     <md-card-title>{{post.subject}}</md-card-title>
     <md-card-subtitle>{{post.member}} / {{post.created_at | amTimeAgo}} </md-card-subtitle>

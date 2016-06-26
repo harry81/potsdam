@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router , Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import { InfiniteScroll } from 'angular2-infinite-scroll';
 import { PotsdamService } from './potsdam.service';
 import { MdCheckbox } from '@angular2-material/checkbox';
@@ -9,9 +8,9 @@ import { MdButton, MD_BUTTON_DIRECTIVES  } from '@angular2-material/button';
 import { MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 import { TimeAgoPipe } from 'angular2-moment';
-import { PostdamComponent } from './+postdam';
-
+import { ActivatedRoute, Router, ROUTER_DIRECTIVES } from '@angular/router';
 import { Post } from './Post';
+
 @Component({
     moduleId: module.id,
     selector: 'potsdam-app',
@@ -26,6 +25,7 @@ import { Post } from './Post';
                  MD_CARD_DIRECTIVES,
                  MD_BUTTON_DIRECTIVES,
                  MD_SIDENAV_DIRECTIVES,
+                 ROUTER_DIRECTIVES,
                 ],
     providers: [PotsdamService,
                 MdIconRegistry,
@@ -33,13 +33,12 @@ import { Post } from './Post';
     pipes: [TimeAgoPipe],
 })
 
-@Routes([
-  {path: '/postdam', component: PostdamComponent}
-])
 
 export class PotsdamAppComponent {
     constructor (
-        private PotsdamService: PotsdamService
+        private router: Router,
+        private PotsdamService: PotsdamService,
+        private activatedRoute: ActivatedRoute
                 ) {}
     errorMessage: string;
     next: string;
@@ -59,10 +58,6 @@ export class PotsdamAppComponent {
         }
     ];
 
-    onScroll() {
-        console.log('onScroll');
-    }
-
     onScrollDown () {
         console.log('scrolled down!!')
         this.getNext();
@@ -73,11 +68,17 @@ export class PotsdamAppComponent {
     }
 
     ngOnInit() {
-        this.getPosts();
+        this.router
+            .routerState
+            .queryParams
+            .subscribe(params => {
+                console.log('router param - ', params);
+                this.getPosts(params);
+            });
     }
 
-    getPosts() {
-        this.PotsdamService.getPosts()
+    getPosts(params) {
+        this.PotsdamService.getPosts(params)
             .subscribe(
                 postes => {
                     this.extractData(postes.results);
